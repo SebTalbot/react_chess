@@ -1,5 +1,4 @@
 import React from 'react';
-import Square from './square.js'
 
 class Board extends React.Component {
   render() {
@@ -12,23 +11,32 @@ class Board extends React.Component {
         currentRow[x] = this.renderSquare(y,x);
       };
 
-      rows[y] = (<div class="board-row">{currentRow}</div>);
+      rows[y] = (<div key={y} className="board-row">{currentRow}</div>);
     };
 
     return( <div>{rows}</div> );
   }
 
   renderSquare(y,x){
+    const key=y+","+x;
     return(
       <Square 
-        y={y}
-        x={x}
+        key={key}
         value={this.props.squares[y][x]}
         onClick={ ()=> this.props.onClick(y,x) }
       />
     );
   }
 
+
+}
+
+function Square(props){
+  return(
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
 
 export default Board;

@@ -26,7 +26,16 @@ class Game extends React.Component {
   }
 
   handleClick(y,x){
-    console.log(y,x);
+    const squares = this.state.squares.slice();
+    const row = squares[y].slice();
+    row[x] = 'x';
+
+    squares[y] = row;
+
+    this.setState({
+      squares: squares,
+    })
+
   }
 
 }
