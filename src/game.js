@@ -1,13 +1,13 @@
 // This class is mainly the controller of the project
 
 import React from 'react';
-import Board from './board.js';
+import Board from './components/board.js';
 
 class Game extends React.Component {
   constructor() {
     super();
     this.state = {
-      squares: Array(8).fill( Array(8).fill(null) ),
+      squares: this.initSquares(),
     };
   }
 
@@ -27,17 +27,18 @@ class Game extends React.Component {
     );
   }
 
+  initSquares() {
+    let array = Array(8).fill(null);
+    for(let i=0; i<8; i++){
+      let row = Array(8).fill(null);
+      array[i] = row;
+    }
+    return array;
+
+  }
+
+  // EVENTS
   handleClick(y,x){
-    const squares = this.state.squares.slice();
-    const row = squares[y].slice();
-    row[x] = 'x';
-
-    squares[y] = row;
-
-    this.setState({
-      squares: squares,
-    })
-
   }
 
 }
