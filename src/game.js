@@ -1,3 +1,5 @@
+// This class is mainly the controller of the project
+
 import React from 'react';
 import Board from './board.js';
 
@@ -13,7 +15,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board 
+          <Board
             squares={this.state.squares}
             onClick={(y,x)=> this.handleClick(y,x)}
           />
