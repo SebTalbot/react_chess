@@ -18,7 +18,9 @@ export class Game extends React.Component {
       ];
     this.state = {
       squares: initBoard,
-      whiteIsNext: true
+      whiteIsNext: true,
+      firstSelect: true,
+      selected: null
     };
   }
 
@@ -31,9 +33,24 @@ export class Game extends React.Component {
 
   handleClick(y,x) {
     const squares = this.state.squares;
-    squares[y][x] = 'x';
-    this.setState(
-      squares: squares
-    );
+    let selected = this.state.selected;
+    let firstSelect = this.state.firstSelect;
+
+    if(firstSelect){
+      selected = [y,x];
+    }
+    else {
+      squares[y][x] = squares[selected[0]][selected[1]];
+      squares[selected[0]][selected[1]] = 0;
+      selected = null;
+    }
+
+    firstSelect = !firstSelect;
+    this.setState({
+      squares: squares,
+      firstSelect: firstSelect,
+      selected: selected
+    });
+
   }
 }
