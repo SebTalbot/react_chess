@@ -25,10 +25,12 @@ export class Game extends React.Component {
   }
 
   render(){
-    return <Board
-             squares={this.state.squares}
-             onClick={(y,x) => this.handleClick(y,x)}
-           />;
+    return (
+      <Board
+        squares={this.state.squares}
+        onClick={(y,x) => this.handleClick(y,x)}
+      />
+    );
   }
 
   handleClick(y,x) {
